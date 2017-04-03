@@ -1,0 +1,44 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+ext{
+	lombokVersion = '1.16.12'
+	mysqlVersion = '6.0.5'
+	slf4jVersion = '1.7.22'
+	swaggerVersion = '2.6.1'
+	hibernateVersion = '5.2.9.Final'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+
+	compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
+	compile group: 'org.hibernate', name: 'hibernate-java8', version: hibernateVersion
+	compile group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	compile group: 'mysql', name: 'mysql-connector-java', version: mysqlVersion
+	compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
+
+	runtime('com.h2database:h2')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
