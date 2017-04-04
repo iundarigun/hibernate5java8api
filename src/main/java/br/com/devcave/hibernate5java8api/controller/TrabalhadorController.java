@@ -3,9 +3,13 @@ package br.com.devcave.hibernate5java8api.controller;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,4 +40,12 @@ public class TrabalhadorController {
         Optional<Trabalhador> trabalhador = trabalhadorRepository.getOptionalTrabalhadorById(id);
         return trabalhador.orElse(new Trabalhador()).toString();
     }
+
+    @RequestMapping(value = "/trabalhadores/nome/{nome}", method = RequestMethod.GET)
+    @Transactional
+    public List<String> recuperarTrabahador(@PathVariable String nome) {
+        Stream<Trabalhador> trabalhadores = trabalhadorRepository.findByNome(nome);
+        return trabalhadores.map(t -> t.toString()).collect(Collectors.toList());
+    }
+
 }

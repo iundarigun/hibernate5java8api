@@ -22,7 +22,7 @@ public class Hibernate5java8apiApplication {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cat.iundarigun.hibernate5java8api"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.devcave.hibernate5java8api"))
                 .paths(PathSelectors.any())
                 .build();
     }
