@@ -23,10 +23,10 @@ public class Trabalhador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_pessoa")
+    @Column(name = "id_trabalhador")
     private Long id;
 
-    @Column(name = "nom_pessoa", nullable = false)
+    @Column(name = "nom_trabalhador", nullable = false)
     private String nome;
 
     @Column(name = "dat_nascimento")
