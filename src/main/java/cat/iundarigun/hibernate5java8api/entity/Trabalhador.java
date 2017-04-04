@@ -1,7 +1,9 @@
 package cat.iundarigun.hibernate5java8api.entity;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,10 +14,12 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
-public class Pessoa {
+@ToString
+public class Trabalhador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +31,9 @@ public class Pessoa {
 
     @Column(name = "dat_nascimento")
     private LocalDate dataNascimento;
+
+    @Column(name = "num_duracao_jornada")
+    private Duration duracaoJornada;
 
     @Column(name = "dat_criacao")
     private LocalDateTime dataCriacao;
@@ -42,6 +49,10 @@ public class Pessoa {
     @PreUpdate
     public void preUpdate() {
         dataAlteracao = LocalDateTime.now();
+    }
+
+    public Optional<LocalDate> getDataNascimento() {
+        return Optional.ofNullable(dataNascimento);
     }
 
 }
