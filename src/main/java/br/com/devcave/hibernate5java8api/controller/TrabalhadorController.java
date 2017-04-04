@@ -1,4 +1,4 @@
-package cat.iundarigun.hibernate5java8api.controller;
+package br.com.devcave.hibernate5java8api.controller;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cat.iundarigun.hibernate5java8api.entity.Trabalhador;
-import cat.iundarigun.hibernate5java8api.repository.TrabalhadorRepository;
+import br.com.devcave.hibernate5java8api.entity.Trabalhador;
+import br.com.devcave.hibernate5java8api.repository.TrabalhadorRepository;
 
 @RestController
 public class TrabalhadorController {

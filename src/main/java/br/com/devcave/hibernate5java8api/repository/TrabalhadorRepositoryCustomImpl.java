@@ -1,4 +1,4 @@
-package cat.iundarigun.hibernate5java8api.repository;
+package br.com.devcave.hibernate5java8api.repository;
 
 import java.util.Optional;
 
@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cat.iundarigun.hibernate5java8api.entity.Trabalhador;
+import br.com.devcave.hibernate5java8api.entity.Trabalhador;
 import lombok.extern.slf4j.Slf4j;
 
 /**

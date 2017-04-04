@@ -1,4 +1,4 @@
-package cat.iundarigun.hibernate5java8api;
+package br.com.devcave.hibernate5java8api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

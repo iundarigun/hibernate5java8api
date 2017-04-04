@@ -1,4 +1,4 @@
-package cat.iundarigun.hibernate5java8api.entity;
+package br.com.devcave.hibernate5java8api.entity;
 
 import java.time.Duration;
 import java.time.LocalDate;
