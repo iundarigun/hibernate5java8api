@@ -16,7 +16,7 @@ apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 ext{
-	lombokVersion = '1.16.12'
+	lombokVersion = '1.16.14'
 	mysqlVersion = '6.0.5'
 	slf4jVersion = '1.7.22'
 	swaggerVersion = '2.6.1'
@@ -38,6 +38,9 @@ dependencies {
 	compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
+
+	compile group: 'org.mapstruct', name: 'mapstruct', version: '1.2.0.Beta1'
+	compile group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.2.0.Beta1'
 
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

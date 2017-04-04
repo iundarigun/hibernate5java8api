@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.devcave.hibernate5java8api.dto.TrabalhadorDTO;
 import br.com.devcave.hibernate5java8api.entity.Trabalhador;
+import br.com.devcave.hibernate5java8api.repository.TrabalhadorMapper;
 import br.com.devcave.hibernate5java8api.repository.TrabalhadorRepository;
 
 @RestController
@@ -24,6 +26,8 @@ public class TrabalhadorController {
 
     @Autowired
     private TrabalhadorRepository trabalhadorRepository;
+    @Autowired
+    private TrabalhadorMapper trabalhadorMapper;
 
     @RequestMapping(value = "/trabalhador/criar", method = RequestMethod.POST)
     public Long crearTrabahador(@RequestParam String nome, @RequestParam String dataNascimento,
@@ -35,10 +39,22 @@ public class TrabalhadorController {
         return trabalhadorRepository.save(trabalhador).getId();
     }
 
+    @RequestMapping(value = "/trabalhador/dto/criar", method = RequestMethod.POST)
+    public Long crearTrabahadorFromDTO(@RequestParam String nome, @RequestParam String dataNascimento,
+            @RequestParam Integer horas) {
+        TrabalhadorDTO trabalhador = new TrabalhadorDTO();
+        trabalhador.setNome(nome);
+        trabalhador.setDataNascimento(Optional.ofNullable(LocalDate.parse(dataNascimento, DateTimeFormatter.ISO_DATE)));
+        trabalhador.setDuracao(Duration.ofHours(horas));
+        return trabalhadorRepository.save(trabalhadorMapper.trabalhadorDTOToTrabalhador(trabalhador)).getId();
+    }
+
     @RequestMapping(value = "/trabalhador/{id}", method = RequestMethod.GET)
-    public String recuperarTrabahador(@PathVariable Long id) {
+    public TrabalhadorDTO recuperarTrabahador(@PathVariable Long id) {
         Optional<Trabalhador> trabalhador = trabalhadorRepository.getOptionalTrabalhadorById(id);
-        return trabalhador.orElse(new Trabalhador()).toString();
+        return trabalhadorMapper
+                .trabalhadorToTrabalhadorDTO(trabalhador.orElse(new Trabalhador()));
+
     }
 
     @RequestMapping(value = "/trabalhadores/nome/{nome}", method = RequestMethod.GET)
